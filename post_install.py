@@ -7,6 +7,7 @@ Runs on container creation to set up:
 - Directory ownership fixes for mounted volumes
 """
 
+import contextlib
 import json
 import os
 import subprocess
@@ -24,10 +25,8 @@ def setup_claude_settings():
     # Load existing settings or start fresh
     settings = {}
     if settings_file.exists():
-        try:
+        with contextlib.suppress(json.JSONDecodeError):
             settings = json.loads(settings_file.read_text())
-        except json.JSONDecodeError:
-            pass
 
     # Set bypassPermissions mode
     if "permissions" not in settings:
