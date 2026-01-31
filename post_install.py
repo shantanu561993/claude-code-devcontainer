@@ -31,7 +31,6 @@ def setup_claude_settings():
     # Set bypassPermissions mode
     if "permissions" not in settings:
         settings["permissions"] = {}
-    settings["permissions"]["defaultMode"] = "bypassPermissions"
 
     settings_file.write_text(json.dumps(settings, indent=2) + "\n", encoding="utf-8")
     print(f"[post_install] Claude settings configured: {settings_file}", file=sys.stderr)
