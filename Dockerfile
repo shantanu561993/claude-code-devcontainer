@@ -3,7 +3,9 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
 ARG TZ
-ENV TZ="$TZ"
+ENV TZ="Singapore/Asia"
+ENV "GIT_DELTA_VERSION"="0.18.2"
+ENV "ZSH_IN_DOCKER_VERSION"="1.2.1"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
