@@ -1,28 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
   "name": "Claude Code Sandbox",
-<<<<<<< HEAD
   "dockerComposeFile": "docker-compose.yaml",
   "service": "devcontainer",
-||||||| 369b395
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "TZ": "${localEnv:TZ:America/New_York}",
-      "GIT_DELTA_VERSION": "0.18.2",
-      "ZSH_IN_DOCKER_VERSION": "1.2.1"
-    }
-  },
-=======
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "TZ": "${localEnv:TZ:UTC}",
-      "GIT_DELTA_VERSION": "0.18.2",
-      "ZSH_IN_DOCKER_VERSION": "1.2.1"
-    }
-  },
->>>>>>> upstream/main
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
