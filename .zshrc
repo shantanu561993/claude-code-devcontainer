@@ -54,3 +54,4 @@ _fzf_compgen_dir() {
 # Source fzf key bindings and completion
 source ~/.fzf/key-bindings.zsh
 source ~/.fzf/completion.zsh
+alias claude-z-ai="CLAUDE_CONFIG_DIR=~/.claude-z-ai claude"
