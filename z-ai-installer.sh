@@ -145,10 +145,6 @@ configure_claude() {
     #read -s -p "🔑 Please enter your Z.AI API key: " api_key
     echo
 
-    if [ -z "$api_key" ]; then
-        log_error "API key cannot be empty. Please run the script again."
-        exit 1
-    fi
 
     ensure_dir_exists "$CONFIG_DIR"
 
@@ -160,7 +156,7 @@ configure_claude() {
 
         const homeDir = os.homedir();
         const filePath = path.join(homeDir, ".claude", "settings.json");
-        const apiKey = "'"$api_key"'";
+        const apiKey = "API_KEY";
 
         const content = fs.existsSync(filePath)
             ? JSON.parse(fs.readFileSync(filePath, "utf-8"))
