@@ -126,7 +126,7 @@ configure_claude_json(){
       const path = require("path");
 
       const homeDir = os.homedir();
-      const filePath = path.join(homeDir, ".claude-z-ai.json");
+      const filePath = path.join(homeDir, ".claude.json");
       if (fs.existsSync(filePath)) {
           const content = JSON.parse(fs.readFileSync(filePath, "utf-8"));
           fs.writeFileSync(filePath, JSON.stringify({ ...content, hasCompletedOnboarding: true }, null, 2), "utf-8");
@@ -142,9 +142,13 @@ configure_claude_json(){
 configure_claude() {
     log_info "Configuring Claude Code..."
     echo "   You can get your API key from: $API_KEY_URL"
-    #read -s -p "🔑 Please enter your Z.AI API key: " api_key
-    echo
-
+#    read -s -p "🔑 Please enter your Z.AI API key: " api_key
+#    echo
+#
+#    if [ -z "$api_key" ]; then
+#        log_error "API key cannot be empty. Please run the script again."
+#        exit 1
+#    fi
 
     ensure_dir_exists "$CONFIG_DIR"
 
@@ -155,8 +159,8 @@ configure_claude() {
         const path = require("path");
 
         const homeDir = os.homedir();
-        const filePath = path.join(homeDir, ".claude", "settings.json");
-        const apiKey = "API_KEY";
+        const filePath = path.join(homeDir, ".claude-z-ai", "settings.json");
+        const apiKey = "APIKEY";
 
         const content = fs.existsSync(filePath)
             ? JSON.parse(fs.readFileSync(filePath, "utf-8"))
@@ -169,9 +173,9 @@ configure_claude() {
                 ANTHROPIC_BASE_URL: "'"$API_BASE_URL"'",
                 API_TIMEOUT_MS: "'"$API_TIMEOUT_MS"'",
                 CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: 1,
-                "ANTHROPIC_DEFAULT_HAIKU_MODEL": "glm-4.5-air",
-                "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-4.7",
-                "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-4.7"
+                ANTHROPIC_DEFAULT_HAIKU_MODEL: "glm-4.5-air",
+                ANTHROPIC_DEFAULT_SONNET_MODEL: "glm-5-turbo",
+                ANTHROPIC_DEFAULT_OPUS_MODEL: "glm-5.1"
             }
         }, null, 2), "utf-8");
     ' || {
@@ -188,7 +192,7 @@ configure_claude() {
 
 main() {
     echo "🚀 Starting $SCRIPT_NAME"
-    mkdir ~/.claude-z-ai
+
     check_nodejs
     install_claude_code
     configure_claude_json
@@ -198,7 +202,7 @@ main() {
     log_success "🎉 Installation completed successfully!"
     echo ""
     echo "🚀 You can now start using Claude Code with:"
-    echo "   claude-Z-AI"
+    echo "   claude"
 }
 
 main "$@"
